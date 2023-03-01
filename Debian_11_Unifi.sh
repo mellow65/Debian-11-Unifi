@@ -2,14 +2,10 @@
 
 Colour='\033[1;31m'
 less='\033[0m'
-requiredver='7.3.83'
 
 echo -e "${Colour}By using this script, you'll update the system, install the needed MongoDB 3.6 because that's the latest one that will work, Java 11, and the latest stable UniFi controller.\nUse CTRL+C to cancel the script\n\n${less}"
 read -p "This script will not install any other versions than what is listed above, I am not that smart to figure out how to do that. Press enter to move on, or CTRL+C to run away." version
 
-if [[ -z "$version" ]]; then
-	version='7.3.83'
-fi
 
 echo -e "${Colour}\n\nAdding the Mongodb Key and Mongodb Server 3.6 Repo.\n\n${less}"
 curl https://pgp.mongodb.com/server-3.6.asc | sudo gpg --dearmor | sudo tee /usr/share/keyrings/mongodb-org-server-3.6-archive-keyring.gpg >/dev/null    
