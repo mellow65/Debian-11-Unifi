@@ -37,6 +37,7 @@ sleep 1
 sudo systemctl start mongod  
 sudo systemctl enable mongod
 echo -e "${Colour}\n\nDone.\n\n${less}"
+sleep 1
 
 
 echo -e "${Colour}\n\nThe UniFi controller will be installed now.\n\n${less}"
