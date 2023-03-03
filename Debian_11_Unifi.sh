@@ -3,8 +3,14 @@
 Colour='\033[1;31m'
 less='\033[0m'
 
-echo -e "${Colour}By using this script, you'll update the system, install the needed MongoDB 3.6 because that's the latest one that will work, Java 11, and the latest stable UniFi controller.\n\n${less}"
+echo -e "${Colour}By using this script, you'll update the system, install the needed MongoDB 3.6 because that's the latest one that will work, Java 11, and the latest stable UniFi controller, and curl, because I found my fresh install didn't have it.\n\n${less}"
 read -p "This script will not install any other versions than what is listed above, I am not that smart to figure out how to do that. Press enter to move on, or CTRL+C to run away." version
+
+
+echo -e "${Colour}\n\nAdding curl if you don't have it installed yet.\n\n${less}"
+sleep 1
+sudo apt update -y
+sudo apt install curl -y
 
 
 echo -e "${Colour}\n\nAdding the Mongodb repo and Mongodb Server 3.6 key.\n\n${less}"
