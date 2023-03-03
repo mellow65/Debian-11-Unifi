@@ -7,15 +7,15 @@ echo -e "${Colour}By using this script, you'll update the system, install the ne
 read -p "This script will not install any other versions than what is listed above, I am not that smart to figure out how to do that. Press enter to move on, or CTRL+C to run away." version
 
 
-echo -e "${Colour}\n\nAdding the Mongodb Key and Mongodb Server 3.6 Repo.\n\n${less}"
+echo -e "${Colour}\n\nAdding the Mongodb repo and Mongodb Server 3.6 key.\n\n${less}"
 sleep 1
-curl https://pgp.mongodb.com/server-3.6.asc | sudo gpg --dearmor | sudo tee /usr/share/keyrings/mongodb-org-server-3.6-archive-keyring.gpg >/dev/null    
 echo 'deb [signed-by=/usr/share/keyrings/mongodb-org-server-3.6-archive-keyring.gpg] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/3.6 multiverse' | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list > /dev/null
+curl https://pgp.mongodb.com/server-3.6.asc | sudo gpg --dearmor | sudo tee /usr/share/keyrings/mongodb-org-server-3.6-archive-keyring.gpg >/dev/null    
 
-echo -e "${Colour}\n\nAdding the Unifi Key and Unifi Repo.\n\n${less}"
+echo -e "${Colour}\n\nAdding the Unifi Repo and Unifi Key.\n\n${less}"
 sleep 1
-curl https://dl.ui.com/unifi/unifi-repo.gpg | sudo tee /usr/share/keyrings/ubiquiti-archive-keyring.gpg >/dev/null  #add unifi repository key
 echo 'deb [signed-by=/usr/share/keyrings/ubiquiti-archive-keyring.gpg] https://www.ui.com/downloads/unifi/debian stable ubiquiti' | sudo tee /etc/apt/sources.list.d/100-ubnt-unifi.list > /dev/null   #add unifi repository
+curl https://dl.ui.com/unifi/unifi-repo.gpg | sudo tee /usr/share/keyrings/ubiquiti-archive-keyring.gpg >/dev/null  #add unifi repository key
 
 echo -e "${Colour}\n\nThe system will now upgrade all the software and firmware, as well as clean up old/unused packages.\n\n${less}"
 sleep 1
