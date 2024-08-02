@@ -7,12 +7,12 @@ echo -e "${Colour}By using this script, you'll restore your immich database. .\n
 read -p "This will erase all volumes!! Use with caution! Press enter to move on, or CTRL+C to run away." -n 1 -s
 echo
 
-read -p "Enter the directory where you want to restore the database: " directory
+read -p "Enter the directory where your docker-compose.yml file is for Immich: " directory
 
 echo "You entered: $directory"
 
 # Confirmation check
-read -p "Are you sure you want to restore the database in $directory and remove all volumes? (y/n) " -n 1 -r
+read -p "Double check your docker-compose.yml file is located in $directory? (y/n) " -n 1 -r
 echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]
