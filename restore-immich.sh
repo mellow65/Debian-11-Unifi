@@ -34,7 +34,9 @@ then
   | sed "s/SELECT pg_catalog.set_config('search_path', '', false);/SELECT pg_catalog.set_config('search_path', 'public, pg_catalog', true);/g" \
   | docker exec -i immich_postgres psql --username=postgres    # Restore Backup
 
-  echo " Restoration complete."
+  docker compose down
+  
+  echo " Restoration complete.  Go map your photos now in the .env file and restart your dockers with docker compose up -d"
 else
   echo " Restoration cancelled."
 fi
