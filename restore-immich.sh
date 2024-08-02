@@ -19,7 +19,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "Proceeding with restoration..."
   cd "$directory" || exit 1
-  docker-compose down -v # CAUTION! Deletes all Immich data to start from scratch.
+  docker compose down -v # CAUTION! Deletes all Immich data to start from scratch.
   docker compose pull # Update to latest version of Immich (if desired)
   docker compose create   # Create Docker containers for Immich apps without running them.
   docker start immich_postgres    # Start Postgres server
