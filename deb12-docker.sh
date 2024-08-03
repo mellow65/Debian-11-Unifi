@@ -7,19 +7,15 @@ echo -e "${color}By using this script, you'll update the system, install ca-cert
 
 read -p "This script will not install any other versions than what is listed above, I am not that smart to figure out how to do that. Press enter to move on, or CTRL+C to run away."
 
-echo -e "${color}Step 1/6: Updating package list...${reset}"
 sudo apt-get update -y
+sudo apt-get install ca-certificates curl -y
 
-echo -e "${color}Step 2/6: Installing ca-certificates and curl...${reset}"
-sudo apt-get install -y ca-certificates curl
-
-echo -e "${color}Step 3/6: Setting up Docker repository...${reset}"
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
 chmod a+r /etc/apt/keyrings/docker.asc
 
 echo -e "${color}Step 4/6: Adding Docker repository...${reset}"
-sudo add-apt-repository "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable"
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 echo -e "${color}Step 5/6: Updating package list again...${reset}"
 sudo apt-get update
