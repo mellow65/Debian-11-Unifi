@@ -23,4 +23,7 @@ sudo apt-get update
 echo -e "${color}Step 6/6: Installing Docker and plugins...${reset}"
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
+echo -e "${color}Testing docker was installed correctly${reset}"
+sudo docker run hello-world
+
 echo -e "${color}Good job, nothing broke.${reset}"
