@@ -1,3 +1,5 @@
+#Wanted to make a script following docker install from https://docs.docker.com/engine/install/debian/#install-using-the-repository
+
 #!/bin/bash
 
 color='\033[1;31m'
@@ -5,7 +7,7 @@ reset='\033[0m'
 
 echo -e "${color}By using this script, you'll update the system, install ca-certificates, curl, docker-ce, docker-ce-cli, containerd.io, docker-buildx-plugin, and docker-compose-plugin.${reset}"
 
-read -p "This script will not install any other versions than what is listed above, I am not that smart to figure out how to do that. Press enter to move on, or CTRL+C to run away."
+read -p "${color}This script will not install any other versions than what is listed above, I am not that smart to figure out how to do that. Press enter to move on, or CTRL+C to run away.${reset}"
 
 sudo apt-get update -y
 sudo apt-get install ca-certificates curl -y
