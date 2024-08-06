@@ -11,11 +11,3 @@ wget -qO- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb12-
 
 ```
 
-
-
-
-
-This one restores your immich config file to a new machine or docker configuration.
-```bash
-sudo wget "https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/restore-immich.sh" -O restore-immich.sh && sudo chmod +x restore-immich.sh && ./restore-immich.sh
-```
