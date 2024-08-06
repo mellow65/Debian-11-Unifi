@@ -7,13 +7,11 @@ sudo wget "https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb12
 
 curl -o- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb12-docker.sh | bash
 
+wget -qO- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb12-docker.sh | bash
+
 ```
 
 
-This one will run a backup of your immich docker so it can be restored on another machine. 
-```bash
-sudo wget "https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/immich-backup.sh" -O immich-backup.sh && sudo chmod +x immich-backup.sh && ./immich-backup.sh
-```
 
 
 
