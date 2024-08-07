@@ -11,25 +11,30 @@ wget -qO- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb12-
 
 ```
 
-This script will set up your unprivlaged LXC container in Proxmox to be able to advertaise routes on your home network.  If you were to set it up with out this, you would be able to get to your container, but not the rest of your network.  
+This section will set up your unprivlaged LXC container in Proxmox to be able to advertaise routes on your home network for tailscale and twingate.  If you were to set it up with out this, you would be able to access your container, but not the rest of your network.  
 
 These lines must be added to your /etc/pve/lxc/1XX.conf file
 
-lxc.cgroup2.devices.allow: c 10:200 rwm
-
-lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file
-
 ```bash
+lxc.cgroup2.devices.allow: c 10:200 rwm
+lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file
+```
+Reboot container.
 
+Install tailscale and twingate via their respectible recomended methods.
+
+Twingate will output a copy/paste command from the admin page, there is nothing more to do in the lxc terminal.
+
+Tailscale will requre extra configuration via the command line.
+
+This will set up the networking in the container to allow advertising routes on your network.  These are pulled from tailscales websites.
+```bash
 curl -o- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/prox_lxc_tail_twin.sh | bash
-
 ```
 
 After setting up you can run this command, setting the IP addresses you need. 
-
 ```bash
-sudo tailscale up --advertise-routes=192.0.2.0/24,198.51.100.0/24
-
+sudo tailscale up --advertise-routes=192.168.50.0/24,192.168.100.0/24
 ```
 
 
