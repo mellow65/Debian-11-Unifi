@@ -16,6 +16,7 @@ This script will set up your unprivlaged LXC container in Proxmox to be able to 
 These lines must be added to your /etc/pve/lxc/1XX.conf file
 
 lxc.cgroup2.devices.allow: c 10:200 rwm
+
 lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file
 
 ```bash
