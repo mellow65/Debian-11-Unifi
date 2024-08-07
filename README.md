@@ -32,7 +32,7 @@ This will set up the networking in the container to allow advertising routes on 
 curl -o- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/prox_lxc_tail_twin.sh | bash
 ```
 
-After setting up you can run this command, setting the IP addresses you need. 
+After setting up you can run this command, change IP address or ranges to fit your needs.
 ```bash
 sudo tailscale up --advertise-routes=192.168.50.0/24,192.168.100.0/24
 ```
