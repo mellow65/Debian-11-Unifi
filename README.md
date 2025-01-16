@@ -2,16 +2,7 @@ This is a collection of some random scripts that I got tired of doing over and o
 
 
 ```bash
-curl -o- https://github.com/mellow65/Debian-11-Unifi/raw/main/filebrowser.sh | bash
-```
-
-```bash
 bash -c "$(wget -qLO - https://github.com/mellow65/Debian-11-Unifi/raw/main/filebrowser.sh)"
-```
-
-```bash
-sudo wget "https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/refs/heads/main/filebrowser.sh" -O filebrowser.sh && sudo chmod +x filebrowser.sh && ./filebrowser.sh && rm filebrowser.sh
-
 ```
 
 
