@@ -3,6 +3,7 @@ This is a collection of some random scripts that I got tired of doing over and o
 
 ```bash
 curl -o- https://raw.githubusercontent.com/mellow65/ProxmoxVE/4451733fc01f46332a286c3f297cd4d87ec5b776/misc/filebrowser.sh | bash
+wget -qO- https://raw.githubusercontent.com/mellow65/ProxmoxVE/4451733fc01f46332a286c3f297cd4d87ec5b776/misc/filebrowser.sh | bash
 ```
 
 
