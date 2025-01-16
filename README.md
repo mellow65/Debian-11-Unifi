@@ -1,18 +1,13 @@
 This is a collection of some random scripts that I got tired of doing over and over.  They are pretty specific to what I'm working on, but if they work for you, great!!
 
-
+This is a copy of a Proxmox Helper script for filebrowser, but allows you to select the port you want to use. 
 ```bash
 bash -c "$(wget -qLO - https://github.com/mellow65/Debian-11-Unifi/raw/main/filebrowser.sh)"
 ```
 
-
+This will automate the install of Docker
 ```bash
-sudo wget "https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb12-docker.sh" -O deb12-docker.sh && sudo chmod +x deb12-docker.sh && ./deb12-docker.sh
-
 curl -o- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb12-docker.sh | bash
-
-wget -qO- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb12-docker.sh | bash
-
 ```
 
 This section will set up your unprivlaged LXC container in Proxmox to be able to advertaise routes on your home network for tailscale and twingate.  If you were to set it up with out this, you would be able to access your container, but not the rest of your network.  
