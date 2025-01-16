@@ -6,7 +6,7 @@ curl -o- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/refs/heads/m
 ```
 
 ```bash
-sudo wget "https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/refs/heads/main/filebrowser.sh" -O filebrowser.sh && sudo chmod +x filebrowser.sh && ./filebrowser.sh
+sudo wget "https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/refs/heads/main/filebrowser.sh" -O filebrowser.sh && sudo chmod +x filebrowser.sh && ./filebrowser.sh && rm filebrowser.sh
 
 ```
 
