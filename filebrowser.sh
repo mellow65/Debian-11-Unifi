@@ -43,7 +43,8 @@ if [ -f /root/filebrowser.db ]; then
       clear
       exit
     fi
-fi 
+fi
+
 while true; do
     read -p "This will Install ${APP} on $hostname. Proceed(y/n)?" yn
     case $yn in
@@ -82,7 +83,7 @@ if [[ "${prompt,,}" =~ ^(y|yes)$ ]]; then
   filebrowser config set -a '0.0.0.0' &>/dev/null
   filebrowser config init --auth.method=noauth &>/dev/null
   filebrowser config set --auth.method=noauth &>/dev/null
-  filebrowser users add ID 1 --perm.admin &>/dev/null  
+  filebrowser users add ID 1 --perm.admin &>/dev/null
 else
   filebrowser config init -a '0.0.0.0' &>/dev/null
   filebrowser config set -a '0.0.0.0' &>/dev/null
