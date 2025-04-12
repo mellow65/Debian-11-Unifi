@@ -35,6 +35,8 @@ function init_server_config() {
         umask 077
         wg genkey | tee "$WG_DIR/server_private.key" | wg pubkey > "$WG_DIR/server_public.key"
 
+        SERVER_PUBLIC_IP=$(curl -s https://api.ipify.org)
+
         cat > "$WG_CONFIG" <<EOF
 [Interface]
 Address = $SERVER_IP/24
@@ -64,11 +66,22 @@ function add_client() {
     echo "Enter a name for the new client:"
     read -r CLIENT_NAME
 
+    # Validate client name
+    if [[ -z "$CLIENT_NAME" ]]; then
+        echo "Error: Client name cannot be empty"
+        return 1
+    fi
+
     CLIENT_IP=$(get_next_ip)
     CLIENT_PRIV=$(wg genkey)
     CLIENT_PUB=$(echo "$CLIENT_PRIV" | wg pubkey)
     SERVER_PUB=$(cat "$WG_DIR/server_public.key")
     SERVER_PUBLIC_IP=$(curl -s https://api.ipify.org)
+
+    if [[ -z "$SERVER_PUBLIC_IP" ]]; then
+        echo "Error: Could not determine server public IP"
+        return 1
+    fi
 
     echo "[+] Generating client config for $CLIENT_NAME ($CLIENT_IP)"
 
@@ -77,12 +90,12 @@ function add_client() {
 [Interface]
 PrivateKey = $CLIENT_PRIV
 Address = $CLIENT_IP/32
-DNS = 1.1.1.1
 
 [Peer]
 PublicKey = $SERVER_PUB
 Endpoint = $SERVER_PUBLIC_IP:$WG_PORT
-AllowedIPs = $WG_SUBNET.0/24
+# Only route traffic to the server IP
+AllowedIPs = $SERVER_IP/32
 PersistentKeepalive = 25
 EOF
 
@@ -92,6 +105,7 @@ EOF
 # $CLIENT_NAME
 [Peer]
 PublicKey = $CLIENT_PUB
+# Only accept traffic from this client's IP
 AllowedIPs = $CLIENT_IP/32
 " >> "$WG_CONFIG"
 
@@ -99,6 +113,10 @@ AllowedIPs = $CLIENT_IP/32
 
     echo "[+] Restarting WireGuard to apply new client..."
     systemctl restart "wg-quick@$WG_INTERFACE"
+
+    echo "[+] Configuration complete!"
+    echo "[+] To connect, copy ${CLIENT_NAME}_wg.conf to your client machine"
+    echo "[+] Note: This configuration will only route traffic between the server ($SERVER_IP) and client ($CLIENT_IP)"
 }
 
 function delete_client() {
@@ -124,24 +142,36 @@ function delete_client() {
 
     echo "[+] Deleting $CLIENT_NAME ($CLIENT_IP)..."
 
-    # Remove Peer block from config
-    sed -i "/# $CLIENT_NAME/,+3d" "$WG_CONFIG"
-    # Remove from used IPs
+    sed -i "/# $CLIENT_NAME/,+4d" "$WG_CONFIG"
     sed -i "\|$CLIENT_IP|d" "$USED_IPS_FILE"
-    # Remove from client list
     sed -i "\|^$CLIENT_NAME,|d" "$CLIENTS_DIR/client_list.csv"
 
     echo "[+] Restarting WireGuard after deletion..."
     systemctl restart "wg-quick@$WG_INTERFACE"
 }
 
+function uninstall_wireguard() {
+    echo "Are you sure you want to completely remove WireGuard and all configs? [y/N]"
+    read -r CONFIRM
+    if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
+        systemctl stop "wg-quick@$WG_INTERFACE"
+        systemctl disable "wg-quick@$WG_INTERFACE"
+        apt remove --purge -y wireguard wireguard-tools
+        rm -rf "$WG_DIR"
+        echo "[+] WireGuard and all configuration files removed."
+    else
+        echo "Aborted."
+    fi
+}
+
 function show_menu() {
     echo "Choose an action:"
-    select opt in "Add New Client" "Delete Existing Client" "Exit"; do
+    select opt in "Add New Client" "Delete Existing Client" "Uninstall WireGuard and Remove All Configs" "Exit"; do
         case $REPLY in
             1) add_client; break ;;
             2) delete_client; break ;;
-            3) exit 0 ;;
+            3) uninstall_wireguard; break ;;
+            4) exit 0 ;;
             *) echo "Invalid option. Try again." ;;
         esac
     done
@@ -151,4 +181,4 @@ function show_menu() {
 check_root
 install_wireguard
 init_server_config
-show_menu 
+show_menu
