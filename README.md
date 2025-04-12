@@ -34,6 +34,19 @@ wg show
 ```
 
 
+This is a MTU Checker over VPN
+```bash
+wget https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/refs/heads/main/find_mtu.sh -O find_mtu.sh && bash find_mtu.sh 10.10.0.1
+```
+
+```bash
+./bash find_mtu.sh 10.10.0.1
+```
+
+
+
+
+
 This will automate the install of Docker
 ```bash
 curl -o- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb12-docker.sh | bash
