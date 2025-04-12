@@ -5,10 +5,25 @@ This is a copy of a Proxmox Helper script for filebrowser, but allows you to sel
 bash -c "$(wget -qLO - https://github.com/mellow65/Debian-11-Unifi/raw/main/filebrowser.sh)"
 ```
 
+This is a wireguard installer
+```bash
+bash -c "$(wget -qLO - (https://github.com/mellow65/Debian-11-Unifi/blob/main/wg-install.sh)"
+```
+
+
+
+
 This will automate the install of Docker
 ```bash
 curl -o- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb12-docker.sh | bash
 ```
+
+
+
+
+
+
+
 
 This section will set up your unprivlaged LXC container in Proxmox to be able to advertaise routes on your home network for tailscale and twingate.  If you were to set it up with out this, you would be able to access your container, but not the rest of your network.  
 
