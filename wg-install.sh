@@ -1,3 +1,6 @@
+NEW
+
+
 #!/bin/bash
 
 WG_INTERFACE="wg0"
@@ -42,6 +45,7 @@ function init_server_config() {
 Address = $SERVER_IP/24
 ListenPort = $WG_PORT
 PrivateKey = $(cat "$WG_DIR/server_private.key")
+MTU=1220
 EOF
 
         systemctl enable "wg-quick@$WG_INTERFACE"
@@ -90,6 +94,7 @@ function add_client() {
 [Interface]
 PrivateKey = $CLIENT_PRIV
 Address = $CLIENT_IP/32
+MTU=1220
 
 [Peer]
 PublicKey = $SERVER_PUB
