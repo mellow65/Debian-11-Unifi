@@ -7,7 +7,7 @@ bash -c "$(wget -qLO - https://github.com/mellow65/Debian-11-Unifi/raw/main/file
 
 This is a wireguard installer
 ```bash
-bash -c "$(wget -qLO - (https://github.com/mellow65/Debian-11-Unifi/blob/main/wg-install.sh)"
+curl -o- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/refs/heads/main/wg-install.sh | bash
 ```
 
 
