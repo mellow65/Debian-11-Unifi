@@ -1,6 +1,3 @@
-NEW
-
-
 #!/bin/bash
 
 WG_INTERFACE="wg0"
