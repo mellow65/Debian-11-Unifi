@@ -10,7 +10,28 @@ This is a wireguard installer
 wget https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/refs/heads/main/wg-install.sh -O wg-install.sh && bash wg-install.sh
 ```
 
+Client side, copy config file to /etc/wireguard/wg0.conf
 
+
+Bring up wg0
+```bash
+wg-quick up wg0
+```
+
+Stop wg0
+```bash
+wg-quick down wg0
+```
+
+Start wg0 on boot
+```bash
+systemctl enable wg-quick@wg0
+```
+
+Show status
+```bash
+wg show
+```
 
 
 This will automate the install of Docker
