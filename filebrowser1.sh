@@ -181,4 +181,5 @@ EOF
 else
     echo -e "${YW}⚠️ Installation skipped. Exiting.${CL}"
     exit 0
+
 fi
