@@ -11,7 +11,7 @@ bash -c "$(wget -qLO - https://github.com/mellow65/Debian-11-Unifi/raw/main/file
 
 This will automate the install of Docker
 ```bash
-curl -o- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb12-docker.sh | bash
+curl -o- https://raw.githubusercontent.com/mellow65/Debian-11-Unifi/main/deb13-docker.sh | bash
 ```
 
 
